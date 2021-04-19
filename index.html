@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cellular automata</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
+	<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+	<div class="settings-grid">
+		<div class="grid-container">
+			<div class="grid-item"></div>
+			<div class="grid-item">Space</div>
+			<div class="grid-item">1</div>
+			<div class="grid-item">2</div>
+			<div class="grid-item">3</div>
+			<div class="grid-item">4</div>
+			<div class="grid-item">5</div>
+			<div class="grid-item">6</div>
+			<div class="grid-item">7</div>
+			<div class="grid-item">8</div>
+
+			<div class="grid-item">Stay</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="stayCheckSpace" onclick="stayCheckBoxClicked('0')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="stayCheck1" onclick="stayCheckBoxClicked('1')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="stayCheck2" onclick="stayCheckBoxClicked('2')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="stayCheck3" onclick="stayCheckBoxClicked('3')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="stayCheck4" onclick="stayCheckBoxClicked('4')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="stayCheck5" onclick="stayCheckBoxClicked('5')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="stayCheck6" onclick="stayCheckBoxClicked('6')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="stayCheck7" onclick="stayCheckBoxClicked('7')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="stayCheck8" onclick="stayCheckBoxClicked('8')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+
+			<div class="grid-item">Born</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="bornCheckSpace" onclick="bornCheckBoxClicked('0')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+			<input type="checkbox" id="bornCheck1" onclick="bornCheckBoxClicked('1')">
+			<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="bornCheck2" onclick="bornCheckBoxClicked('2')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="bornCheck3" onclick="bornCheckBoxClicked('3')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="bornCheck4" onclick="bornCheckBoxClicked('4')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="bornCheck5" onclick="bornCheckBoxClicked('5')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="bornCheck6" onclick="bornCheckBoxClicked('6')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="bornCheck7" onclick="bornCheckBoxClicked('7')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="grid-item">
+				<label class="container">
+					<input type="checkbox" id="bornCheck8" onclick="bornCheckBoxClicked('8')">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</div>
+		
+		<div class="text">Alive cells density [%]</div>
+		
+		<div class="spinBox">
+			<input id="spinBox" type="number" min="0" max ="100" step="1" value="50" height="50px">
+		</div>
+		
+		<div class="saveButton">
+			<button class="button" id="saveButton" value="Save" onclick="restartButtonClicked()">Save</button>
+		</div>
+	</div>
+
+	<hr> 
+	
+	<button class="button" id="startButton" value="Start" onclick="startButtonClicked()">Start</button>
+	<button class="button" id="stopButton" value="Stop" onclick="stopButtonClicked()">Stop</button>
+	<button class="button" id="restartButton" value="Restart" onclick="restartButtonClicked()">Restart</button>
+	
+	<br></br>
+	
+	<label for="progressBar">Steps: </label>
+	<progress id="progressBar" value="0" max="1000"></progress>
+	
+	<br></br>
+	
+	<div class="grid-container" style="grid-column-gap: 25px">
+		<canvas id:"canvas"></canvas>
+		<div id="chartContainer" style="width: 650px;"></div>
+	</div>
+	
+	<a href="AK_Projekt1_AdriannaUrbanska.pdf">Report</a>
+	
+	<script src="index.js" color="red"></script>
+</body>
+</html>
